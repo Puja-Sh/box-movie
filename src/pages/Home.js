@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import ActorGrid from '../components/actor/ActorGrid';
 import MainPageLayout from '../components/MainPageLayout';
+import ShowGrid from '../components/show/ShowGrid';
 import { apiGet } from '../misc/config';
 
 function Home() {
@@ -10,7 +12,7 @@ function Home() {
   const selectOption = radioOptionSearch === 'shows';
 
   const searchHandler = () => {
-    apiGet(`/search/shows?q=${input}`).then(res => {
+    apiGet(`/search/${radioOptionSearch}?q=${input}`).then(res => {
       setResults(res);
       console.log(res);
     });
@@ -36,11 +38,11 @@ function Home() {
     }
 
     if (results && results.length > 0) {
-      return results[0].show
-        ? results.map(item => <div key={item.show.id}>{item.show.name} </div>)
-        : results.map(item => (
-            <div key={item.person.id}>{item.person.name} </div>
-          ));
+      return results[0].show ? (
+        <ShowGrid data={results} />
+      ) : (
+        <ActorGrid data={results} />
+      );
     }
     return null;
   };
