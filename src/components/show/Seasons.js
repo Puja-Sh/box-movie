@@ -1,37 +1,38 @@
 import React from 'react';
+import { StyledSeasonList, StyledSeasonsWrapper } from './Seasons.styled';
 
 const Seasons = ({ seasons }) => {
   return (
-    <div>
+    <StyledSeasonsWrapper>
       <p>
         Season in total : <span>{seasons.length}</span>
       </p>
       <p>
-        Episode in total:
+        Episode in total :
         <span>
           {seasons.reduce((acc, season) => acc + season.episodeOrder, 0)}
         </span>
       </p>
 
-      <div>
+      <StyledSeasonList>
         {seasons.map(season => (
-          <div key={season.id}>
-            <div>
+          <div key={season.id} className="season-item">
+            <div className="left">
               <p>Season {season.number}</p>
               <p>
-                Episodes: <span> {season.episodeOrder} </span>
+                Episodes : <span> {season.episodeOrder} </span>
               </p>
             </div>
-            <div>
-              Aired:
+            <div className="right">
+              Aired :
               <span>
                 {season.premieredDate} - {season.endDate}
               </span>
             </div>
           </div>
         ))}
-      </div>
-    </div>
+      </StyledSeasonList>
+    </StyledSeasonsWrapper>
   );
 };
 

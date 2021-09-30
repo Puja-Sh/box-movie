@@ -7,6 +7,7 @@ import DetailShowLayout from '../components/show/DetailShowLayout';
 import Seasons from '../components/show/Seasons';
 
 import { apiGet } from '../misc/config';
+import { StyledInfoBlock, StyledShowPageWrapper } from './Show.styled';
 
 function Show() {
   const { id } = useParams();
@@ -52,7 +53,7 @@ function Show() {
             // setShow(res);
             // setIsLoading(false);
           }
-        }, 2000);
+        }, 1000);
       })
       .catch(err => {
         if (isMounted) {
@@ -74,7 +75,7 @@ function Show() {
     return <div>Opps! something went wrong</div>;
   }
   return (
-    <div>
+    <StyledShowPageWrapper>
       <DetailShowLayout
         image={show.image}
         name={show.name}
@@ -82,23 +83,25 @@ function Show() {
         summary={show.summary}
         tags={show.genres}
       />
-      <div>
+      <StyledInfoBlock>
         <h2>Details</h2>
         <Details
           status={show.status}
           network={show.network}
           premiered={show.premiered}
         />
-      </div>
-      <div>
+      </StyledInfoBlock>
+
+      <StyledInfoBlock>
         <h2>Seasons</h2>
         <Seasons seasons={show._embedded.seasons} />
-      </div>
-      <div>
+      </StyledInfoBlock>
+
+      <StyledInfoBlock>
         <h2>Cast</h2>
         <Cast cast={show._embedded.cast} />
-      </div>
-    </div>
+      </StyledInfoBlock>
+    </StyledShowPageWrapper>
   );
 }
 
