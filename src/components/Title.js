@@ -1,11 +1,12 @@
 import React from 'react';
+import { StyledTitleWrapper } from './Title.styled';
 
 function Title({ title, subtitle }) {
   return (
-    <div>
+    <StyledTitleWrapper>
       <h1>{title}</h1>
       <p>{subtitle}</p>
-    </div>
+    </StyledTitleWrapper>
   );
 }
 

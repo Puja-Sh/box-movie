@@ -16,7 +16,7 @@ function Starred() {
       const promises = starred.map(showId => apiGet(`/shows/${showId}`));
 
       // Console promises
-      Promise.all(promises).then(api => console.log(api));
+      // Promise.all(promises).then(api => console.log(api));
 
       Promise.all(promises)
         .then(apiData => apiData.map(show => ({ show })))
