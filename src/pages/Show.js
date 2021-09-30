@@ -1,12 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { useParams } from 'react-router';
 import { apiGet } from '../misc/config';
 
 function Show() {
   const { id } = useParams();
-  const [show, setShow] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+
+  const reducer = (prevState, action) => {
+    switch (action.type) {
+      case 'FETCH_SUCCESS': {
+        return { isLoading: false, error: null, show: action.show };
+      }
+
+      case 'FETCH_FAILED': {
+        return { isLoading: false, error: action.error };
+      }
+
+      default:
+        return prevState;
+    }
+  };
+
+  const initialState = {
+    show: null,
+    isLoading: true,
+    error: null,
+  };
+
+  const [{ isLoading, show, error }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
+  // ---- REPLACING IT WITH useReducer ----
+  // const [show, setShow] = useState(null);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [error, setError] = useState(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -15,15 +42,17 @@ function Show() {
       .then(res => {
         setTimeout(() => {
           if (isMounted) {
-            setShow(res);
-            setIsLoading(false);
+            dispatch({ type: 'FETCH_SUCCESS', show: res });
+            // setShow(res);
+            // setIsLoading(false);
           }
         }, 2000);
       })
       .catch(err => {
         if (isMounted) {
-          setError(err.message);
-          setIsLoading(true);
+          dispatch({ type: 'FETCH_FAILED', error: err.message });
+          // setError(err.message);
+          // setIsLoading(false);
         }
       });
 
