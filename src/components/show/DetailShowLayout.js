@@ -16,7 +16,7 @@ const DetailShowLayout = ({ name, rating, summary, tags, image }) => {
         <StyledHeadline>
           <h1>{name}</h1>
           <div>
-            <StyledStar />
+            <StyledStar active="true" />
             <span>{rating.average || 'N/A'}</span>
           </div>
         </StyledHeadline>

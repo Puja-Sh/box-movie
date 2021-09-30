@@ -4,19 +4,35 @@ import ShowCard from './ShowCard';
 import { StyledFlexGrid } from '../styled';
 
 import IMAGE_NOT_FOUND from '../../images/NoImageFound.png';
+import { useShows } from '../../misc/custom-hooks';
 
 function ShowGrid({ data }) {
+  const [starredShows, dispatchStarred] = useShows();
+
   return (
     <StyledFlexGrid>
-      {data.map(({ show }) => (
-        <ShowCard
-          key={show.id}
-          id={show.id}
-          name={show.name}
-          image={show.image ? show.image.medium : IMAGE_NOT_FOUND}
-          summary={show.summary}
-        />
-      ))}
+      {data.map(({ show }) => {
+        const isStarred = starredShows.includes(show.id);
+
+        const onStarClickHandler = () => {
+          if (isStarred) {
+            dispatchStarred({ type: 'REMOVE', showId: show.id });
+          } else {
+            dispatchStarred({ type: 'ADD', showId: show.id });
+          }
+        };
+        return (
+          <ShowCard
+            key={show.id}
+            id={show.id}
+            name={show.name}
+            image={show.image ? show.image.medium : IMAGE_NOT_FOUND}
+            summary={show.summary}
+            onStarClick={onStarClickHandler}
+            isStarred={isStarred}
+          />
+        );
+      })}
     </StyledFlexGrid>
   );
 }
