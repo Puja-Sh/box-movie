@@ -1,5 +1,11 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { useParams } from 'react-router';
+
+import Cast from '../components/show/Cast';
+import Details from '../components/show/Details';
+import DetailShowLayout from '../components/show/DetailShowLayout';
+import Seasons from '../components/show/Seasons';
+
 import { apiGet } from '../misc/config';
 
 function Show() {
@@ -67,7 +73,33 @@ function Show() {
   if (error) {
     return <div>Opps! something went wrong</div>;
   }
-  return <div></div>;
+  return (
+    <div>
+      <DetailShowLayout
+        image={show.image}
+        name={show.name}
+        rating={show.rating}
+        summary={show.summary}
+        tags={show.genres}
+      />
+      <div>
+        <h2>Details</h2>
+        <Details
+          status={show.status}
+          network={show.network}
+          premiered={show.premiered}
+        />
+      </div>
+      <div>
+        <h2>Seasons</h2>
+        <Seasons seasons={show._embedded.seasons} />
+      </div>
+      <div>
+        <h2>Cast</h2>
+        <Cast cast={show._embedded.cast} />
+      </div>
+    </div>
+  );
 }
 
 export default Show;
