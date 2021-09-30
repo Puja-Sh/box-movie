@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import ShowCard from './ShowCard';
 
 import { StyledFlexGrid } from '../styled';
@@ -14,13 +14,14 @@ function ShowGrid({ data }) {
       {data.map(({ show }) => {
         const isStarred = starredShows.includes(show.id);
 
-        const onStarClickHandler = () => {
+        const onStarClickHandler = useCallback(() => {
           if (isStarred) {
             dispatchStarred({ type: 'REMOVE', showId: show.id });
           } else {
             dispatchStarred({ type: 'ADD', showId: show.id });
           }
-        };
+        }, [isStarred, show.id]);
+
         return (
           <ShowCard
             key={show.id}
@@ -37,4 +38,4 @@ function ShowGrid({ data }) {
   );
 }
 
-export default ShowGrid;
+export default memo(ShowGrid);

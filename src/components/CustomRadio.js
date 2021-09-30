@@ -63,4 +63,4 @@ const CustomRadio = ({ label, ...restProps }) => {
   );
 };
 
-export default CustomRadio;
+export default memo(CustomRadio);

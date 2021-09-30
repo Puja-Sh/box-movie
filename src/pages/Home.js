@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import ActorGrid from '../components/actor/ActorGrid';
 import CustomRadio from '../components/CustomRadio';
 import MainPageLayout from '../components/MainPageLayout';
@@ -13,6 +13,21 @@ import {
   StyledSearchInput,
 } from './Home.styled';
 
+const renderResults = results => {
+  if (results && results.length == 0) {
+    return <StyledCenter>No results, Sorry :(</StyledCenter>;
+  }
+
+  if (results && results.length > 0) {
+    return results[0].show ? (
+      <ShowGrid data={results} />
+    ) : (
+      <ActorGrid data={results} />
+    );
+  }
+  return null;
+};
+
 function Home() {
   const [input, setInput] = useLastQuery();
   const [results, setResults] = useState(null);
@@ -26,34 +41,20 @@ function Home() {
     });
   };
 
-  const onInputChangeHandler = e => {
+  const onInputChangeHandler = useCallback(e => {
     setInput(e.target.value);
-  };
+  }, []);
 
-  const onKeyDownHandler = e => {
+  const onKeyDownHandler = useCallback(e => {
     if (e.keyCode === 13) {
       searchHandler();
     }
-  };
+  }, []);
 
-  const onRadioChangeHandler = e => {
+  //only one copy of radioChangeHandler using useCallback
+  const onRadioChangeHandler = useCallback(e => {
     setradioOptionSearch(e.target.value);
-  };
-
-  const renderResults = () => {
-    if (results && results.length == 0) {
-      return <StyledCenter>No results, Sorry :(</StyledCenter>;
-    }
-
-    if (results && results.length > 0) {
-      return results[0].show ? (
-        <ShowGrid data={results} />
-      ) : (
-        <ActorGrid data={results} />
-      );
-    }
-    return null;
-  };
+  }, []);
 
   return (
     <MainPageLayout>
@@ -90,7 +91,7 @@ function Home() {
           Search
         </button>
       </StyledSearchButtonWrapper>
-      {renderResults()}
+      {renderResults(results)}
     </MainPageLayout>
   );
 }
