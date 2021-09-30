@@ -3,6 +3,7 @@ import MainPageLayout from '../components/MainPageLayout';
 import ShowGrid from '../components/show/ShowGrid';
 import { apiGet } from '../misc/config';
 import { useShows } from '../misc/custom-hooks';
+import { StyledCenter } from './Home.styled';
 
 function Starred() {
   const [starred] = useShows();
@@ -34,9 +35,11 @@ function Starred() {
   }, [starred]);
   return (
     <MainPageLayout>
-      {isLoading && <div>Shows are still loading</div>}
-      {error && <div>Error Occured: {error}</div>}
-      {!isLoading && !shows && <div>No shows were added</div>}
+      {isLoading && <StyledCenter>Shows are still loading</StyledCenter>}
+      {error && <StyledCenter>Error Occured: {error}</StyledCenter>}
+      {!isLoading && !shows && (
+        <StyledCenter>No shows were added :(</StyledCenter>
+      )}
       {!isLoading && !error && shows && <ShowGrid data={shows} />}
     </MainPageLayout>
   );

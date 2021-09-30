@@ -23,7 +23,7 @@ export const StyledShowCard = styled(StyledSearchCard)`
       outline: none;
       border: 1px solid #ddd;
       border-radius: 5rem;
-      padding: 5px 20px;
+      padding: 2px;
       background-color: #fff;
       display: flex;
       justify-content: center;

@@ -6,6 +6,7 @@ import Details from '../components/show/Details';
 import DetailShowLayout from '../components/show/DetailShowLayout';
 import Seasons from '../components/show/Seasons';
 import { useShow } from '../misc/custom-hooks';
+import { StyledCenter } from './Home.styled';
 
 import { StyledInfoBlock, StyledShowPageWrapper } from './Show.styled';
 
@@ -19,10 +20,10 @@ function Show() {
   // const [error, setError] = useState(null);
 
   if (isLoading) {
-    return <div>Data is loading, wait!!!</div>;
+    return <StyledCenter>Data is loading, wait!!!</StyledCenter>;
   }
   if (error) {
-    return <div>Opps! something went wrong</div>;
+    return <StyledCenter>Opps! something went wrong</StyledCenter>;
   }
   return (
     <StyledShowPageWrapper>

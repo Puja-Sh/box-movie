@@ -3,9 +3,11 @@ import ActorGrid from '../components/actor/ActorGrid';
 import CustomRadio from '../components/CustomRadio';
 import MainPageLayout from '../components/MainPageLayout';
 import ShowGrid from '../components/show/ShowGrid';
+
 import { apiGet } from '../misc/config';
 import { useLastQuery } from '../misc/custom-hooks';
 import {
+  StyledCenter,
   StyledRadioInputsWrapper,
   StyledSearchButtonWrapper,
   StyledSearchInput,
@@ -40,7 +42,7 @@ function Home() {
 
   const renderResults = () => {
     if (results && results.length == 0) {
-      return <div>No results, Sorry!</div>;
+      return <StyledCenter>No results, Sorry :(</StyledCenter>;
     }
 
     if (results && results.length > 0) {
