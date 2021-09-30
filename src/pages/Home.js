@@ -3,9 +3,10 @@ import ActorGrid from '../components/actor/ActorGrid';
 import MainPageLayout from '../components/MainPageLayout';
 import ShowGrid from '../components/show/ShowGrid';
 import { apiGet } from '../misc/config';
+import { useLastQuery } from '../misc/custom-hooks';
 
 function Home() {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useLastQuery();
   const [results, setResults] = useState(null);
   const [radioOptionSearch, setradioOptionSearch] = useState('shows');
 
@@ -14,7 +15,6 @@ function Home() {
   const searchHandler = () => {
     apiGet(`/search/${radioOptionSearch}?q=${input}`).then(res => {
       setResults(res);
-      console.log(res);
     });
   };
 
