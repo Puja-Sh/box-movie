@@ -2,7 +2,11 @@ import styled from 'styled-components';
 
 export const StyledTitleWrapper = styled.div`
   text-align: center;
-  margin: 1.5rem 0 40px;
+  margin: 5rem 0 40px;
+
+  @media only screen and (max-width: 400px) {
+    margin: 10rem 0 40px;
+  }
 
   h1 {
     color: ${({ theme }) => theme.mainColors.blue};

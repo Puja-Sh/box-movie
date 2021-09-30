@@ -9,18 +9,28 @@ import { useShows } from '../../misc/custom-hooks';
 function ShowGrid({ data }) {
   const [starredShows, dispatchStarred] = useShows();
 
+  const onStarClickHandler = useCallback(
+    (showId, isStarred) => {
+      if (isStarred) {
+        dispatchStarred({ type: 'REMOVE', showId });
+      } else {
+        dispatchStarred({ type: 'ADD', showId });
+      }
+    },
+    [dispatchStarred]
+  );
   return (
     <StyledFlexGrid>
       {data.map(({ show }) => {
-        const isStarred = starredShows.includes(show.id);
+        // const isStarred = starredShows.includes(show.id);
 
-        const onStarClickHandler = useCallback(() => {
-          if (isStarred) {
-            dispatchStarred({ type: 'REMOVE', showId: show.id });
-          } else {
-            dispatchStarred({ type: 'ADD', showId: show.id });
-          }
-        }, [isStarred, show.id]);
+        // const onStarClickHandler = useCallback(() => {
+        //   if (isStarred) {
+        //     dispatchStarred({ type: 'REMOVE', showId: show.id });
+        //   } else {
+        //     dispatchStarred({ type: 'ADD', showId: show.id });
+        //   }
+        // }, [isStarred, show.id]);
 
         return (
           <ShowCard
@@ -30,7 +40,7 @@ function ShowGrid({ data }) {
             image={show.image ? show.image.medium : IMAGE_NOT_FOUND}
             summary={show.summary}
             onStarClick={onStarClickHandler}
-            isStarred={isStarred}
+            isStarred={starredShows.includes(show.id)}
           />
         );
       })}
