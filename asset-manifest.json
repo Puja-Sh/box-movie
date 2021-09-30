@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/box-movie/static/css/main.9b1d317e.chunk.css",
-    "main.js": "/box-movie/static/js/main.dd70e97b.chunk.js",
-    "main.js.map": "/box-movie/static/js/main.dd70e97b.chunk.js.map",
+    "main.css": "/box-movie/static/css/main.226d751d.chunk.css",
+    "main.js": "/box-movie/static/js/main.4805f0ea.chunk.js",
+    "main.js.map": "/box-movie/static/js/main.4805f0ea.chunk.js.map",
     "runtime-main.js": "/box-movie/static/js/runtime-main.8406b1a4.js",
     "runtime-main.js.map": "/box-movie/static/js/runtime-main.8406b1a4.js.map",
     "static/js/2.b8782ded.chunk.js": "/box-movie/static/js/2.b8782ded.chunk.js",
@@ -12,14 +12,14 @@
     "index.html": "/box-movie/index.html",
     "service-worker.js": "/box-movie/service-worker.js",
     "service-worker.js.map": "/box-movie/service-worker.js.map",
-    "static/css/main.9b1d317e.chunk.css.map": "/box-movie/static/css/main.9b1d317e.chunk.css.map",
+    "static/css/main.226d751d.chunk.css.map": "/box-movie/static/css/main.226d751d.chunk.css.map",
     "static/js/2.b8782ded.chunk.js.LICENSE.txt": "/box-movie/static/js/2.b8782ded.chunk.js.LICENSE.txt",
     "static/media/NoImageFound.298b9820.png": "/box-movie/static/media/NoImageFound.298b9820.png"
   },
   "entrypoints": [
     "static/js/runtime-main.8406b1a4.js",
     "static/js/2.b8782ded.chunk.js",
-    "static/css/main.9b1d317e.chunk.css",
-    "static/js/main.dd70e97b.chunk.js"
+    "static/css/main.226d751d.chunk.css",
+    "static/js/main.4805f0ea.chunk.js"
   ]
 }
