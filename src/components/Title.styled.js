@@ -4,7 +4,7 @@ export const StyledTitleWrapper = styled.div`
   text-align: center;
   margin: 5rem 0 40px;
 
-  @media only screen and (min-width: 300px) {
+  @media only screen and (max-width: 400px) {
     margin: 10rem 0 40px;
   }
 

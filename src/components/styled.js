@@ -28,6 +28,15 @@ export const StyledSearchCard = styled.div`
       width: 12rem;
     }
   }
+  @media only screen and (max-width: 400px) {
+    .img-wrapper {
+      height: 17rem;
+      img {
+        object-fit: cover;
+        width: 100%;
+      }
+    }
+  }
   h1 {
     margin: 10px 0;
     font-size: 21px;

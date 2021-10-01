@@ -19,7 +19,7 @@ function ShowCard({ id, name, image, summary, onStarClick, isStarred }) {
 
       <div className="btns">
         <Link to={`show/${id}`}>Read more</Link>
-        <button type="button" onClick={() => onStarClickHandler(id, isStarred)}>
+        <button type="button" onClick={() => onStarClick(id, isStarred)}>
           <StyledStar active={isStarred} />
         </button>
       </div>
